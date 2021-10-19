@@ -4,8 +4,11 @@ namespace Alura\Banco\Modelo\Conta;
 
 class ContaCorrente extends Conta
 {
-    
-    
+    protected function percentualTarifa(): float
+    {
+        return 0.05;
+    }
+
     public function transfere(float $valorATransferir, Conta $contaDestino): void
     {
         if ($valorATransferir > $this->saldo) {
@@ -13,12 +16,7 @@ class ContaCorrente extends Conta
             return;
         }
 
-        $this->saca($valorATransferir);
-        $contaDestino->deposita($valorATransferir);
-    }
-
-    protected function percentualTarifa(): float
-    {
-        return 0.03;
+        $this->sacar($valorATransferir);
+        $contaDestino->depositar($valorATransferir);
     }
 }

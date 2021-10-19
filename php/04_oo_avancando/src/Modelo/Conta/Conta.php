@@ -21,11 +21,10 @@ abstract class Conta
         self::$numeroDeContas--;
     }
 
-    protected function saca(float $valorASacar): void
-    {   
+    public function saca(float $valorASacar): void
+    {
         $tarifaSaque = $valorASacar * $this->percentualTarifa();
         $valorSaque = $valorASacar + $tarifaSaque;
-
         if ($valorSaque > $this->saldo) {
             echo "Saldo indisponível";
             return;
@@ -34,7 +33,7 @@ abstract class Conta
         $this->saldo -= $valorSaque;
     }
 
-    protected function deposita(float $valorADepositar): void
+    public function deposita(float $valorADepositar): void
     {
         if ($valorADepositar < 0) {
             echo "Valor precisa ser positivo";
@@ -43,8 +42,6 @@ abstract class Conta
 
         $this->saldo += $valorADepositar;
     }
-
-    
 
     public function recuperaSaldo(): float
     {
@@ -67,5 +64,4 @@ abstract class Conta
     }
 
     abstract protected function percentualTarifa(): float;
-   
 }
